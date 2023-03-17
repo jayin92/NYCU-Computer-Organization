@@ -80,7 +80,7 @@ loop2:
 	bne $v0, $zero, print
 	
 	jal lower
-	j exit
+	j loop2
 	
 print:
 	li $v0, 1
@@ -94,15 +94,20 @@ print:
 	j exit
 
 lower:
+	addi $sp, $sp, -4
+	sw $ra, 0($sp)
 	add $a0, $a3, $a2
 	jal prime
-	beq $v0, $zero, loop2
+	lw $ra, 0($sp)
+	addi $sp, $sp, 4
+	beq $v0, $zero, back
 	li $v0, 1
 	syscall
 	
 	j exit
 
-	
+back:
+	jr $ra
 
 check:
 	rem $t0, $a0, $a1
