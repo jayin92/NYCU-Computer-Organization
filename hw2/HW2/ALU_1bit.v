@@ -1,7 +1,8 @@
-module ALU_1bit( result, carryOut, a, b, invertA, invertB, operation, carryIn, less ); 
+module ALU_1bit( result, carryOut, set, a, b, invertA, invertB, operation, carryIn, less ); 
   
   output wire result;
   output wire carryOut;
+  output wire set;
   
   input wire a;
   input wire b;
@@ -11,6 +12,28 @@ module ALU_1bit( result, carryOut, a, b, invertA, invertB, operation, carryIn, l
   input wire carryIn;
   input wire less;
   
-  /*your code here*/ 
+  wire w0, w1, neg_a, neg_b;
   
+  not n0(neg_a, a);
+  not n1(neg_b, b);
+  
+  MUX_1bit mux_a(w0, a, neg_a, invertA);
+  MUX_1bit mux_b(w1, b, neg_b, invertB);
+  
+    
+  wire y0, y1, y2;
+  
+  or  o0(y0, w0, w1);
+  and a0(y1, w0, w1);
+  
+  Full_adder fa(.sum(y2), 
+                .carryOut(carryOut), 
+                .carryIn(carryIn),
+                .input1(w0),
+                .input2(w1));
+  
+  MUX_2bit mux3(result, y0, y1, y2, less, operation);
+  
+  assign set = y2;
+    
 endmodule
