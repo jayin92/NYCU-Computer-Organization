@@ -58,7 +58,7 @@ module ALU( result, zero, overflow, aluSrc1, aluSrc2, invertA, invertB, operatio
         1'b0
     );
    
-   assign overflow = (operation == 2'b10 ? carries[30] ^ carries[31] : 1'b0);
+   assign overflow = (operation[1] == 1'b1 ? carries[30] ^ carries[31] : 1'b0);
    assign zero = ~(|result[31:0]);
 	  
 endmodule
