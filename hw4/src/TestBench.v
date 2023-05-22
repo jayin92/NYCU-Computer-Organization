@@ -282,7 +282,7 @@ initial begin
 		@(negedge CLK);
 		// after the pc of design is updated
 		// compare the pc value that are 	
-		/*if(cpu.PC.pc_out_o !== pc)begin
+		if(cpu.PC.pc_out_o !== pc)begin
 			case(instruction[31:26])
 				OP_RTYPE:begin
 					if (instruction[5:0]==FUNC_JR)begin
@@ -308,12 +308,12 @@ initial begin
 					$display("ERROR: BGEZ  instruction fail");
 				end
 				default:begin
-					//$display("ERROR: Your next PC points to wrong address");
+					$display("ERROR: Your next PC points to wrong address");
 				end
 			endcase
-			//$display("The correct pc address is %d",pc);
-			//$display("Your pc address is %d",cpu.PC.pc_out_o);
-			//$stop;
+			$display("The correct pc address is %d",pc);
+			$display("Your pc address is %d",cpu.PC.pc_out_o);
+			$stop;
 		end
 		
 		// Check the register & memory file
@@ -401,7 +401,7 @@ initial begin
 				end
 				//$stop;
 			end
-		end*/
+		end
 		if(cpu.IM.Instr_Mem[ pc>>2 ] == 32'd0)begin
 			count = `END_COUNT;    
 			 #(`CYCLE_TIME*2);
