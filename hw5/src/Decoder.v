@@ -28,13 +28,13 @@ assign {RegWrite_o, ALUOp_o, ALUSrc_o, RegDst_o} =
              (instr_op_i == 6'b100010) ? {1'b0, 3'b000, 1'b0, 2'b00} : // jump
              0 ;
 assign {MemtoReg_o, Jump_o, Branch_o, BranchType_o, MemWrite_o, MemRead_o} = 
-             (instr_op_i == 6'b000000) ? {2'b00, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0} : // R
-             (instr_op_i == 6'b001000) ? {2'b00, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0} : // addi
-             (instr_op_i == 6'b100001) ? {2'b01, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1} : // lw
-             (instr_op_i == 6'b100011) ? {2'b00, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0} : // sw
-             (instr_op_i == 6'b111011) ? {2'b00, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0} : // beq
-             (instr_op_i == 6'b100101) ? {2'b00, 1'b0, 1'b1, 1'b1, 1'b0, 1'b0} : // bne
-             (instr_op_i == 6'b100010) ? {2'b00, 1'b1, 1'b0, 1'b0, 1'b0, 1'b0} : // jump
+             (instr_op_i == 6'b000000) ? {2'b01, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0} : // R
+             (instr_op_i == 6'b001000) ? {2'b01, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0} : // addi
+             (instr_op_i == 6'b100001) ? {2'b00, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1} : // lw
+             (instr_op_i == 6'b100011) ? {2'b01, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0} : // sw
+             (instr_op_i == 6'b111011) ? {2'b01, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0} : // beq
+             (instr_op_i == 6'b100101) ? {2'b01, 1'b0, 1'b1, 1'b1, 1'b0, 1'b0} : // bne
+             (instr_op_i == 6'b100010) ? {2'b01, 1'b1, 1'b0, 1'b0, 1'b0, 1'b0} : // jump
              0 ;
 endmodule
    
