@@ -1,0 +1,107 @@
+\documentclass[twocolumn]{extarticle}
+\usepackage{fontspec}   %加這個就可以設定字體
+\usepackage{xeCJK}       %讓中英文字體分開設置
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage[newfloat]{minted}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{titling}
+
+\usepackage{pdftexcmds}
+\usepackage{catchfile}
+\usepackage{ifluatex}
+\usepackage{ifplatform}
+
+\usepackage[breakable, listings, skins, minted]{tcolorbox}
+\usepackage{etoolbox}
+\setminted{fontsize=\footnotesize}
+\renewtcblisting{minted}{%
+    listing engine=minted,
+    minted language=verilog,
+    listing only,
+    breakable,
+    enhanced,
+    minted options = {
+        linenos, 
+        breaklines=true, 
+        breakbefore=., 
+        % fontsize=\footnotesize, 
+        numbersep=2mm
+    },
+    overlay={%
+        \begin{tcbclipinterior}
+            \fill[gray!25] (frame.south west) rectangle ([xshift=4mm]frame.north west);
+        \end{tcbclipinterior}
+    }   
+}
+
+\usepackage[
+top=1.5cm,
+bottom=0.75cm,
+left=1.5cm,
+right=1.5cm,
+includehead,includefoot,
+heightrounded, % to avoid spurious underfull messages
+]{geometry} 
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Code}
+\usepackage[moderate]{savetrees}
+
+
+\title{Computer Organization HW4}
+\author{110550088 李杰穎}
+\date{\today}
+
+
+\setCJKmainfont{Noto Serif TC}
+
+
+\ifwindows
+\setmonofont[Mapping=tex-text]{Consolas}
+\fi
+
+\XeTeXlinebreaklocale "zh"             %這兩行一定要加，中文才能自動換行
+\XeTeXlinebreakskip = 0pt plus 1pt     %這兩行一定要加，中文才能自動換行
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.25}
+\setlength{\droptitle}{-7.5em}   % This is your set screw
+\setlength{\columnsep}{2em}
+
+\begin{document}
+
+\maketitle
+
+
+
+\section{Finished Part}
+
+在本次作業中，我增加了 Data Memory，也更改了 Decoder，讓其支援 \texttt{lw, sw, beq, bne, j} 及上次作業的指令，並也通過了助教提供的 pattern。
+
+另外也有修改 \texttt{ALU\_Ctrl}，以配合 \texttt{ALUOP} 從 2-bit 擴充成 3-bit 的設計。
+
+\section{Problems and Solutions}
+
+在本次作業中，我有遇到 Message 中有提到 \texttt{ALUOp} 的 bit 數量不一致，後來才發現是我大小寫打錯了，修正後就可以正確執行 CPU 了，也成功通過測資。
+
+\section{Additional Modules}
+
+在本次作業中，因為助教提供的 ALU Template 並沒有 \texttt{ALU\_1bit} 及 \texttt{Full\_Adder} 的設計，而我在先前幾次作業中皆有利用到這兩個 module，於是在本次作業中有額外加入這兩個 modules。
+
+\end{document}
