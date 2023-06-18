@@ -161,20 +161,20 @@ MEM/WB Register 大小為 $3+32+32+5+1=73$
 
 我們首先看到 \autoref{fig:test1wave}，可以發現在第六個 cycle 中，進到 ID stage 的 instruction 為 \texttt{0x00202816} 對應到 MIPS instruction 為 \texttt{or r5, r1, r0}。故 \texttt{RegWrite} 為 \texttt{1}，代表在 WB stage 時會將資料重新寫回 register 中、 \texttt{ALU\_Op} 為 \texttt{010} 代表為 R-type 的 instruction、 \texttt{ALUSrc} 為 \texttt{0}，代表 ALU 的第二個 input 為 \texttt{rt}、\texttt{RegDst} 為 \texttt{1} 代表寫入到 \texttt{rd}、\texttt{Jump, Branch, BranchType, MemWrite, MemRead} 皆為 \texttt{0}，代表皆不會用到這些功能。最後 \texttt{MemtoReg} 為 \texttt{1}，代表直接將 ALU 的輸出寫入到 \texttt{rd} 中。
 
-再來看到 \autoref{fig:test2wave}，在第六個 cycle 中，進到 ID stage 的 instruction 為 \texttt{0x8c020004} 對應到 MIPS instruction 為 \texttt{sw r1, 4(r0)}。故 \texttt{RegWrite} 為 \texttt{0}，代表在 WB stage 時不會將資料重新寫回 register 中、 \texttt{ALU\_Op} 為 \texttt{000} 代表為 \texttt{lw}，此時 ALU 可以視加法器，將 \texttt{rs} 儲存的位址加上 offset、 \texttt{ALUSrc} 為 \texttt{1}，代表 ALU 的第二個 input 為 signed extend offset、、\texttt{RegDst, MemtoReg} 可以視為 don't care，因為我們不會將資料寫回到 register file、\texttt{MemWrite} 則是設為 \texttt{1}，因為我們要將 \texttt{rs} 的資料透過 Data Memory 寫到 \texttt{rt+4*4} 的 address 中，最後 \texttt{Jump, Branch, BranchType, MemRead} 皆為 \texttt{0}，代表皆不會用到這些功能。
+再來看到 \autoref{fig:test2wave}，在第六個 cycle 中，進到 ID stage 的 instruction 為 \texttt{0x8c020004} 對應到 MIPS instruction 為 \texttt{sw r2, 4(r0)}。故 \texttt{RegWrite} 為 \texttt{0}，代表在 WB stage 時不會將資料重新寫回 register 中、 \texttt{ALU\_Op} 為 \texttt{000} 代表為 \texttt{lw}，此時 ALU 可以視加法器，將 \texttt{rs} 儲存的位址加上 offset、 \texttt{ALUSrc} 為 \texttt{1}，代表 ALU 的第二個 input 為 signed extend offset、、\texttt{RegDst, MemtoReg} 可以視為 don't care，因為我們不會將資料寫回到 register file、\texttt{MemWrite} 則是設為 \texttt{1}，因為我們要將 \texttt{rs} 的資料透過 Data Memory 寫到 \texttt{rt+4*4} 的 address 中，最後 \texttt{Jump, Branch, BranchType, MemRead} 皆為 \texttt{0}，代表皆不會用到這些功能。
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{test1_wave}
-\caption{CO\_P5\_test\_data2 之波形圖，圖中黃色線所在的 cycle 為第六個 cycle}
+\caption{CO\_P5\_test\_data1 之波形圖，圖中黃色線所在的 cycle 為第六個 cycle}
 \label{fig:test1wave}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{test2_wave}
-\caption{CO\_P5\_test\_data1 之波形圖，圖中黃色線所在的 cycle 為第六個 cycle}
+\caption{CO\_P5\_test\_data2 之波形圖，圖中黃色線所在的 cycle 為第六個 cycle}
 \label{fig:test2wave}
 \end{figure}
 
